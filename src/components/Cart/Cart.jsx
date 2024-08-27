@@ -1,5 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
-import { UrlContext } from "../Context/Context";
+import { useContext, useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
 import { CartContext } from "../Context/CartContext";
 import { Link } from "react-router-dom";
@@ -38,7 +37,7 @@ function Cart() {
       </Helmet>
       <div
         style={{ backgroundColor: "#eee" }}
-        className="w-75 mx-auto my-2 p-2 "
+        className="w-75 mx-auto my-2 p-4"
       >
         <h1>Shop Cart</h1>
 
@@ -53,7 +52,7 @@ function Cart() {
                   alt=""
                 />
               </div>
-              <div className="col-md-9">
+              <div className="col-md-8">
                 <p>{product.product.title}</p>
                 <p className="text-success">Price: {product.price}</p>
                 <button
@@ -66,7 +65,7 @@ function Cart() {
                 </button>
               </div>
 
-              <div className="col-md-2">
+              <div className="col-md-3">
                 <button
                   onClick={() => {
                     updateQuantity(product.product._id, product.count + 1);
@@ -89,7 +88,7 @@ function Cart() {
           );
         })}
         <Link to='/checkout'>
-          <button className="btn btn-success">payment online</button>
+          <button className="btn btn-success my-3">payment online</button>
         </Link>
       </div>
     </>
@@ -97,13 +96,3 @@ function Cart() {
 }
 
 export default Cart;
-
-// {cart?.products?.map((item)=>{
-//   return (
-//     <>
-//     <div className="col-md-3">
-//     <img className="w-100" src={item?.product?.imageCover} alt="" />
-//     </div>
-//     </>
-//   )
-// })}

@@ -1,5 +1,5 @@
-import React, { useContext, useEffect, useState } from "react";
-import {  UrlContext } from "../Context/Context";
+import { useContext } from "react";
+import { UrlContext } from "../Context/Context";
 import { useQuery } from "react-query";
 import axios from "axios";
 import { BallTriangle } from "react-loader-spinner";
@@ -15,14 +15,13 @@ function Products() {
     return response;
   }
 
-  let { isLoading, data, isError } = useQuery("allProducts", getAllProducts);
+  let { isLoading, data } = useQuery("allProducts", getAllProducts);
 
   let { addCart } = useContext(CartContext);
   async function addToCart(id) {
     let { data } = await addCart(id);
     if (data.status === "success") {
       toast.success(data.message);
-      
     }
   }
 
@@ -49,11 +48,17 @@ function Products() {
           <div className="row gy-4 mt-3">
             {data?.data.data.map((item) => {
               return (
-                <div key={item.id} className="col-md-2 product">
+                <div key={item.id} className="col-md-2 mx-auto product ">
                   <Link to={`/details/${item.id}`} className="">
-                    <img className="w-100 " src={item.imageCover} alt="" />
+                    <div  className="img-container">
+                      <img  className="w-100 " src={item.imageCover} alt="" />
+                    </div>
                     <p>{item.category.name}</p>
-                    <p>{item.title.split(" ").slice(0, 3).join(" ")}</p>
+                    <div className="product-info">
+                      <p >
+                        {item.title.split(" ").slice(0, 3).join(" ")}
+                      </p>
+                    </div>
 
                     <div className="d-flex justify-content-between">
                       <span>{item.price} EGP</span>
@@ -68,7 +73,7 @@ function Products() {
                     onClick={() => {
                       addToCart(item.id);
                     }}
-                    className="btn btn-success d-block m-auto w-50 "
+                    className="btn btn-success d-block m-auto w-50  "
                   >
                     Add+
                   </button>

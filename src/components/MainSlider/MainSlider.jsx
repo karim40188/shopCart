@@ -1,14 +1,10 @@
-import React from "react";
 import sliderImg1 from "../../assets/slider-image-1.jpeg";
 import sliderImg2 from "../../assets/slider-image-2.jpeg";
 import sliderImg3 from "../../assets/slider-image-3.jpeg";
 import sliderImg4 from "../../assets/slider-2.jpeg";
 import bannerImg1 from "../../assets/grocery-banner.png";
 import bannerImg2 from "../../assets/grocery-banner-2.jpeg";
-
-import img from "../../assets/react.svg";
 import Slider from "react-slick";
-
 function MainSlider() {
   var settings = {
     dots: true,

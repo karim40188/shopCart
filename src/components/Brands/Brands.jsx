@@ -1,49 +1,58 @@
-import React, { useEffect } from "react";
-import { Helmet } from "react-helmet";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getBrands } from "../Redux/BrandsSlice";
+import { getBrands } from "../../features/BrandSlice";
+import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet";
 import { BallTriangle } from "react-loader-spinner";
-function Brands() {
-  let dispatch = useDispatch();
-  let { brands, isLoading, isError } = useSelector((state) => {
-    return state.brands;
-  });
 
+
+function Brands() {
+  let { data, isLoading } = useSelector((state) => {
+    return state.BrandsReducer;
+  });
+  let dispatch = useDispatch();
   useEffect(() => {
     dispatch(getBrands());
   }, []);
   return (
-    <>
+    <div>
       <Helmet>
         <meta charSet="utf-8" />
         <title>Brands</title>
         <link rel="canonical" href="http://mysite.com/example" />
       </Helmet>
+
+  
+
       {isLoading ? (
-        <div className="loading">
-          <BallTriangle
-            height={100}
-            width={100}
-            radius={5}
-            color="#4fa94d"
-            ariaLabel="ball-triangle-loading"
-            wrapperStyle={{}}
-            wrapperClass=""
-            visible={true}
-          />
-        </div>
+       <BallTriangle
+       height={100}
+       width={100}
+       radius={5}
+       color="#4fa94d"
+       ariaLabel="ball-triangle-loading"
+       wrapperStyle={{}}
+       wrapperClass="justify-content-center align-items-center vh-100"
+       visible={true}
+     />
       ) : (
         <div className="row">
-          {brands.map((brand) => {
+              <h3>Brands</h3>
+          {data?.map((item) => {
             return (
-              <div className="col-md-3 brand" key={brand._id}>
-                <img className="w-100" src={brand.image} alt="" />
-              </div>
+              <Link
+                key={item._id}
+                className="col-md-2 mx-auto pointer"
+                to={`/brands/${item._id}`}
+              >
+                <img src={item.image} alt="" className="w-100" />
+                <p className="fw-bold">{item.name}</p>
+              </Link>
             );
           })}
         </div>
       )}
-    </>
+    </div>
   );
 }
 

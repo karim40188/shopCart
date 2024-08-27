@@ -1,5 +1,5 @@
-import React, { useContext, useState } from "react";
-import { Formik, useFormik } from "formik";
+import { useContext, useState } from "react";
+import {  useFormik } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
@@ -9,7 +9,7 @@ function Login() {
   let [err, setErr] = useState(null);
   let [loading, setLoading] = useState(false);
   let baseUrl = useContext(UrlContext);
-  let { token, setToken } = useContext(UserToken);
+  let { setToken } = useContext(UserToken);
   async function signIn(values) {
     setLoading(true);
     let response = await axios
@@ -18,7 +18,6 @@ function Login() {
         setErr(error?.response.data.message);
         setLoading(false);
       });
-    // console.log(response);
     if (response.data.message == "success") {
       setLoading(false);
       localStorage.setItem("user", response?.data.token);

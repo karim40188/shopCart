@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import { UrlContext } from "../Context/Context";
 import axios from "axios";
 import Slider from "react-slick";
@@ -34,7 +34,7 @@ function Categories() {
         <Slider {...settings}>
           {data?.data?.data.map((item) => {
             return (
-              <div key={item._id} className="col-md-3 details-img">
+              <div key={item._id} className="col-md-3 details-img pointer">
                 <img className="w-100 h-100" src={item.image} alt="" />
               </div>
             );

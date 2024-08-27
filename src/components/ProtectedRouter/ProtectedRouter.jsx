@@ -1,6 +1,6 @@
-import React from "react";
 import { Navigate } from "react-router-dom";
 
+// eslint-disable-next-line react/prop-types
 function ProtectedRouter({ children }) {
   if (localStorage.getItem("user") !== null) {
     return children;
@@ -11,6 +11,7 @@ function ProtectedRouter({ children }) {
 
 export default ProtectedRouter;
 
+// eslint-disable-next-line react/prop-types
 export function PublicRoute({ children }) {
   if (localStorage.getItem("user") === null) {
     return children;

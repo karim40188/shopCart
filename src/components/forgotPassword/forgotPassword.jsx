@@ -1,9 +1,9 @@
 import axios from "axios";
-import { Formik, useFormik } from "formik";
-import React, { useState } from "react";
+import { useFormik } from "formik";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import * as Yup from "yup";
 function forgotPassword() {
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   let [data, setData] = useState(null);
   let navigate = useNavigate();
   async function forgotPass(values) {
@@ -15,6 +15,7 @@ function forgotPassword() {
       setData(data.statusMsg);
     }
   }
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   let formik = useFormik({
     initialValues: {
       email: "",
@@ -22,6 +23,7 @@ function forgotPassword() {
     onSubmit: forgotPass,
   });
 
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   let formik2 = useFormik({
     initialValues: {
       resetCode: "",
@@ -33,9 +35,9 @@ function forgotPassword() {
       "https://ecommerce.routemisr.com/api/v1/auth/verifyResetCode",
       values
     );
-    console.log(data);
     if (data.status == "Success") {
       navigate("/resetpassword");
+      return data;
     }
   }
   return (

@@ -1,4 +1,3 @@
-import React, { useContext } from "react";
 import Products from "../Products/Products";
 import Categories from "../Categories/Categories";
 import MainSlider from "../MainSlider/MainSlider";
@@ -7,7 +6,8 @@ import useNetwork from "../Hooks/useNetwork";
 function Home() {
   let x=useNetwork()
   return (
-    <>
+
+    <div className="container">
       <Helmet>
         <meta charSet="utf-8" />
         <title>Home</title>
@@ -17,7 +17,7 @@ function Home() {
       {x}
       <Categories />
       <Products />
-    </>
+    </div>
   );
 }
 
