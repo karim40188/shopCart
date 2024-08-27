@@ -59,7 +59,7 @@ function Login() {
           className="form-control"
           type="email"
         />
-        {formik.errors.email ? (
+        {formik.errors.email && formik.touched.email ? (
           <div className="alert alert-danger">{formik.errors.email}</div>
         ) : (
           ""
@@ -74,7 +74,7 @@ function Login() {
           className="form-control"
           type="password"
         />
-        {formik.errors.password ? (
+        {formik.errors.password && formik.touched.password? (
           <div className="alert alert-danger">{formik.errors.password}</div>
         ) : (
           ""

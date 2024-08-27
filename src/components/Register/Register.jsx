@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Formik, useFormik } from "formik";
+import  { useState } from "react";
+import {  useFormik } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
@@ -72,7 +72,7 @@ function Register() {
           className="form-control"
           type="text"
         />
-        {formik.errors.name ? (
+        {formik.errors.name && formik.touched.name? (
           <div className="alert alert-danger">{formik.errors.name}</div>
         ) : (
           ""
@@ -87,7 +87,7 @@ function Register() {
           className="form-control"
           type="email"
         />
-        {formik.errors.email ? (
+        {formik.errors.email && formik.touched.email? (
           <div className="alert alert-danger">{formik.errors.email}</div>
         ) : (
           ""
@@ -102,7 +102,7 @@ function Register() {
           className="form-control"
           type="password"
         />
-        {formik.errors.password ? (
+        {formik.errors.password && formik.touched.password ? (
           <div className="alert alert-danger">{formik.errors.password}</div>
         ) : (
           ""
@@ -117,7 +117,7 @@ function Register() {
           className="form-control"
           type="password"
         />
-        {formik.errors.rePassword ? (
+        {formik.errors.rePassword && formik.touched.rePassword? (
           <div className="alert alert-danger">{formik.errors.rePassword}</div>
         ) : (
           ""
@@ -132,7 +132,7 @@ function Register() {
           className="form-control mb-3"
           type="tel"
         />
-        {formik.errors.phone ? (
+        {formik.errors.phone && formik.touched.phone ? (
           <div className="alert alert-danger">{formik.errors.phone}</div>
         ) : (
           ""
