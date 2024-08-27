@@ -1,8 +1,5 @@
 import { useContext, useEffect } from "react";
-import {
-  createBrowserRouter,
-  RouterProvider,
-} from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Layout from "./components/Layout/Layout";
 import Home from "./components/Home/Home";
 import Categories from "./components/Categories/Categories";
@@ -149,8 +146,9 @@ function App() {
 
   return (
     <>
-      <RouterProvider router={router} />
-      <Toaster />
+      <RouterProvider router={router}>
+        <Toaster />
+      </RouterProvider>
     </>
   );
 }

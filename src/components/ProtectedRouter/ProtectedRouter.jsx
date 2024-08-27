@@ -1,11 +1,12 @@
 
-import "react-router-dom"
+import { Navigate } from "react-router-dom";
+// eslint-disable-next-line react/prop-types
 function ProtectedRouter({ children }) {
   if (localStorage.getItem("user") !== null) {
     return children;
   } else {
     // eslint-disable-next-line react/jsx-no-undef
-    return <Navigator to="/login" />;
+    return <Navigate to="/login" />;
   }
 }
 

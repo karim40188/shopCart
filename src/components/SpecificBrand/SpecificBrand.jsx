@@ -12,7 +12,7 @@ function SpecificBrand() {
   console.log(id);
   useEffect(() => {
     dispatch(getSpecificBrand(id));
-  }, []);
+  }, [dispatch, id]);
   return (
     <>
       {isLoading ? (

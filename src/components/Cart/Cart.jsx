@@ -7,13 +7,14 @@ function Cart() {
   let [cart, setCart] = useState([]);
   let { removeCartItem, getCart, updateCartQuantity } = useContext(CartContext);
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   async function getLoggedUserCart() {
     let { data } = await getCart();
     setCart(data?.data);
   }
   useEffect(() => {
     getLoggedUserCart();
-  }, []);
+  }, [getLoggedUserCart]);
 
   async function removeCart(id) {
     let { data } = await removeCartItem(id);

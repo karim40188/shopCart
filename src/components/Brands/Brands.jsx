@@ -13,7 +13,7 @@ function Brands() {
   let dispatch = useDispatch();
   useEffect(() => {
     dispatch(getBrands());
-  }, []);
+  }, [dispatch]);
   return (
     <div>
       <Helmet>

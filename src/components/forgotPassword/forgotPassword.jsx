@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 function forgotPassword() {
   // eslint-disable-next-line react-hooks/rules-of-hooks
   let [data, setData] = useState(null);
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   let navigate = useNavigate();
   async function forgotPass(values) {
     let { data } = await axios.post(

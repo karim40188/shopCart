@@ -1,23 +1,26 @@
-import { useContext } from "react";
+import  { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { UserToken } from "../Context/Context";
 
-import logo from "../../assets/freshcart-logo.svg";
+import logo from '../../assets/freshcart-logo.svg'
 function Navbar() {
   let navigate = useNavigate();
   let { token, setToken } = useContext(UserToken);
 
-  function logOut() {
-    localStorage.removeItem("user");
-    navigate("/login");
-    setToken(null);
+
+
+  function logOut(){
+    localStorage.removeItem('user')
+    navigate('/login')
+    setToken(null)
+    
   }
   return (
     <>
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
         <div className="container">
           <Link className="navbar-brand" to="/">
-            <img className="w-100" src={logo} alt="" />
+          <img className="w-100" src={logo} alt="" />
           </Link>
           <button
             className="navbar-toggler d-lg-none"
