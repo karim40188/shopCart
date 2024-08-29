@@ -1,8 +1,7 @@
 import axios from "axios";
-import React, { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { UrlContext } from "../Context/Context";
-import { useQuery } from "react-query";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 // https://ecommerce.routemisr.com/api/v1/products/6428ca68dc1175abc65ca02b
 
@@ -10,32 +9,35 @@ import Slider from "react-slick";
 import { Helmet } from "react-helmet";
 import toast from "react-hot-toast";
 import { CartContext } from "../Context/CartContext";
-
 function ProductDetails() {
   let [details, setDetails] = useState({});
-  let [status, setStatus] = useState(null);
+  // let [status, setStatus] = useState(null);
+  let navigate = useNavigate();
   let params = useParams();
   let baseUrl = useContext(UrlContext);
   let { addCart } = useContext(CartContext);
 
-  console.log(addCart);
   async function getDetails(id) {
     let { data } = await axios.get(`${baseUrl}/api/v1/products/${id}`);
-    console.log(data);
     setDetails(data?.data);
   }
 
   async function addToCart(id) {
-    let {data} = await addCart(id);
-    console.log(data)
-    if(data.status === 'success'){
-      toast.success(data.message);
+    if (localStorage.getItem("user") == null) {
+      toast.error("you should sign up to add to cart")
+      navigate("/signup");
+    } else {
+      let { data } = await addCart(id);
+      if (data?.status === "success") {
+        toast.success(data.message);
+     
+      }
     }
   }
 
   useEffect(() => {
     getDetails(params.id);
-  }, []);
+  }, );
 
   var settings = {
     dots: true,
@@ -43,7 +45,7 @@ function ProductDetails() {
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
-    autoplay:true,
+    autoplay: true,
   };
 
   return (

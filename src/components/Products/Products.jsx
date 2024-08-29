@@ -16,12 +16,17 @@ function Products() {
   }
 
   let { isLoading, data } = useQuery("allProducts", getAllProducts);
-
   let { addCart } = useContext(CartContext);
   async function addToCart(id) {
+    if (localStorage.getItem("user") == null) {
+      toast.error(
+        "Please sign in to add items to your cart, as the API requires a token for this action"
+      );
+    }
     let { data } = await addCart(id);
     if (data.status === "success") {
       toast.success(data.message);
+      console.log(data);
     }
   }
 
@@ -50,14 +55,12 @@ function Products() {
               return (
                 <div key={item.id} className="col-md-2 mx-auto product ">
                   <Link to={`/details/${item.id}`} className="">
-                    <div  className="img-container">
-                      <img  className="w-100 " src={item.imageCover} alt="" />
+                    <div className="img-container">
+                      <img className="w-100 " src={item.imageCover} alt="" />
                     </div>
                     <p>{item.category.name}</p>
                     <div className="product-info">
-                      <p >
-                        {item.title.split(" ").slice(0, 3).join(" ")}
-                      </p>
+                      <p>{item.title.split(" ").slice(0, 3).join(" ")}</p>
                     </div>
 
                     <div className="d-flex justify-content-between">

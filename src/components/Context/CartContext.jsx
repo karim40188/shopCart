@@ -1,14 +1,15 @@
+/* eslint-disable react/prop-types */
 // add cart context
 import axios from "axios";
-import { createContext, useContext } from "react";
-import { UrlContext } from "./Context";
+import { createContext } from "react";
+// import { UrlContext } from "./Context";
 
 export let CartContext = createContext();
 
 export function CartContextProvider({ children }) {
-  function addCart(id) {
-    return axios
-      .post(
+  async function addCart(id) {
+    try {
+      const response = await axios.post(
         `https://ecommerce.routemisr.com/api/v1/cart`,
         {
           productId: id,
@@ -18,9 +19,11 @@ export function CartContextProvider({ children }) {
             token: localStorage.getItem("user"),
           },
         }
-      )
-      .then((response) => response)
-      .catch((err) => err);
+      );
+      return response;
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   async function getCart() {
@@ -30,7 +33,6 @@ export function CartContextProvider({ children }) {
       },
     });
   }
-
 
   async function removeCartItem(id) {
     return axios.delete(`https://ecommerce.routemisr.com/api/v1/cart/${id}`, {

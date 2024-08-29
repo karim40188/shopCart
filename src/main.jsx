@@ -3,6 +3,7 @@ import App from "./App.jsx";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.js";
 import "../node_modules/@fortawesome/fontawesome-free/css/all.min.css";
+import { Toaster } from "react-hot-toast";
 import "./index.css";
 import UserTokenProvider, {
   BaseUrlContextProvider,
@@ -28,6 +29,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
           </BaseUrlContextProvider>
           {/* <ReactQueryDevtools position="bottom-left" initialIsOpen={false} /> */}
         </CartContextProvider>
+        <Toaster  position="bottom-right"/>
       </QueryClientProvider>
     </Provider>
   </>

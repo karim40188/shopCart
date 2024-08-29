@@ -7,10 +7,6 @@ import Cart from "./components/Cart/Cart";
 import Products from "./components/Products/Products";
 import Register from "./components/Register/Register";
 import Login from "./components/Login/Login";
-import { Toaster } from "react-hot-toast";
-import ProtectedRouter, {
-  PublicRoute,
-} from "./components/ProtectedRouter/ProtectedRouter.jsx";
 import { UserToken } from "./components/Context/Context.jsx";
 import ProductDetails from "./components/ProductDetails/ProductDetails.jsx";
 import CheckOutSession from "./components/CheckOutSession/CheckOutSession.jsx";
@@ -37,108 +33,57 @@ function App() {
       element: <Layout />,
       children: [
         {
+          // eslint-disable-next-line no-undef
           path: "/",
-          element: (
-            <ProtectedRouter>
-              <Home />
-            </ProtectedRouter>
-          ),
+          element: <Home />,
         },
         {
           path: "/signup",
-          element: (
-            <PublicRoute>
-              <Register />
-            </PublicRoute>
-          ),
+          element: <Register />,
         },
         {
           path: "/login",
-          element: (
-            <PublicRoute>
-              <Login />
-            </PublicRoute>
-          ),
+          element: <Login />,
         },
         {
           path: "/forgotpassword",
-          element: (
-            <PublicRoute>
-              <ForgotPassword />
-            </PublicRoute>
-          ),
+          element: <ForgotPassword />,
         },
         {
           path: "/resetpassword",
-          element: (
-            <PublicRoute>
-              <ResetPassword />
-            </PublicRoute>
-          ),
+          element: <ResetPassword />,
         },
         {
           path: "/products",
-          element: (
-            <ProtectedRouter>
-              <Products />
-            </ProtectedRouter>
-          ),
+          element: <Products />,
         },
         {
           path: "/details/:id",
-          element: (
-            <ProtectedRouter>
-              <ProductDetails />
-            </ProtectedRouter>
-          ),
+          element: <ProductDetails />,
         },
         {
           path: "/cart",
-          element: (
-            <ProtectedRouter>
-              <Cart />
-            </ProtectedRouter>
-          ),
+          element: <Cart />,
         },
         {
           path: "/checkout",
-          element: (
-            <ProtectedRouter>
-              <CheckOutSession />
-            </ProtectedRouter>
-          ),
+          element: <CheckOutSession />,
         },
         {
           path: "/allorders",
-          element: (
-            <ProtectedRouter>
-              <Allorders />
-            </ProtectedRouter>
-          ),
+          element: <Allorders />,
         },
         {
           path: "/categories",
-          element: (
-            <ProtectedRouter>
-              <Categories />
-            </ProtectedRouter>
-          ),
+          element: <Categories />,
         },
         {
           path: "/brands",
-          element: (
-            <ProtectedRouter>
-              <Brands />
-            </ProtectedRouter>
-          ),
+          element: <Brands />,
         },
         {
           path: "/brands/:id",
-          element: (
-            <ProtectedRouter>
-              <SpecificBrand />
-            </ProtectedRouter>
-          ),
+          element: <SpecificBrand />,
         },
       ],
     },
@@ -147,7 +92,7 @@ function App() {
   return (
     <>
       <RouterProvider router={router}>
-        <Toaster />
+        {/* <Toaster position="bottom-right" reverseOrder={false} /> */}
       </RouterProvider>
     </>
   );

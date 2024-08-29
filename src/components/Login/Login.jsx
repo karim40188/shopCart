@@ -20,7 +20,7 @@ function Login() {
       });
     if (response.data.message == "success") {
       setLoading(false);
-      localStorage.setItem("user", response?.data.token);
+      localStorage.setItem("user", response?.data?.token);
       setToken(response?.data.token);
       navigate("/");
     }
