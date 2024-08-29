@@ -18,11 +18,6 @@ function Products() {
   let { isLoading, data } = useQuery("allProducts", getAllProducts);
   let { addCart } = useContext(CartContext);
   async function addToCart(id) {
-    if (localStorage.getItem("user") == null) {
-      toast.error(
-        "Please sign in to add items to your cart, as the API requires a token for this action"
-      );
-    }
     let { data } = await addCart(id);
     if (data.status === "success") {
       toast.success(data.message);

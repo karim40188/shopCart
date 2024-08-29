@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 import { UrlContext } from "../Context/Context";
-import { useNavigate, useParams } from "react-router-dom";
+import {  useParams } from "react-router-dom";
 
 // https://ecommerce.routemisr.com/api/v1/products/6428ca68dc1175abc65ca02b
 
@@ -12,7 +12,6 @@ import { CartContext } from "../Context/CartContext";
 function ProductDetails() {
   let [details, setDetails] = useState({});
   // let [status, setStatus] = useState(null);
-  let navigate = useNavigate();
   let params = useParams();
   let baseUrl = useContext(UrlContext);
   let { addCart } = useContext(CartContext);
@@ -23,21 +22,15 @@ function ProductDetails() {
   }
 
   async function addToCart(id) {
-    if (localStorage.getItem("user") == null) {
-      toast.error("you should sign up to add to cart")
-      navigate("/signup");
-    } else {
-      let { data } = await addCart(id);
-      if (data?.status === "success") {
-        toast.success(data.message);
-     
-      }
+    let { data } = await addCart(id);
+    if (data?.status === "success") {
+      toast.success(data.message);
     }
   }
 
   useEffect(() => {
     getDetails(params.id);
-  }, );
+  });
 
   var settings = {
     dots: true,

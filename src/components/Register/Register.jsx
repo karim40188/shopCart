@@ -1,14 +1,16 @@
-import  { useState } from "react";
-import {  useFormik } from "formik";
+import { useContext, useState } from "react";
+import { useFormik } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { UserToken } from "../Context/Context";
 
 useNavigate;
 function Register() {
   let [err, setErr] = useState(null);
   let [loading, setLoading] = useState(false);
   let navigate = useNavigate();
+  let { setToken } = useContext(UserToken);
 
   async function signUp(values) {
     setLoading(true);
@@ -22,7 +24,9 @@ function Register() {
     console.log(response.data.message);
     if (response.data.message == "success") {
       setLoading(false);
-      navigate("/login");
+      localStorage.setItem("user", response?.data?.token);
+      setToken(response?.data?.token);
+      navigate("/");
     }
   }
 
@@ -72,7 +76,7 @@ function Register() {
           className="form-control"
           type="text"
         />
-        {formik.errors.name && formik.touched.name? (
+        {formik.errors.name && formik.touched.name ? (
           <div className="alert alert-danger">{formik.errors.name}</div>
         ) : (
           ""
@@ -87,7 +91,7 @@ function Register() {
           className="form-control"
           type="email"
         />
-        {formik.errors.email && formik.touched.email? (
+        {formik.errors.email && formik.touched.email ? (
           <div className="alert alert-danger">{formik.errors.email}</div>
         ) : (
           ""
@@ -117,7 +121,7 @@ function Register() {
           className="form-control"
           type="password"
         />
-        {formik.errors.rePassword && formik.touched.rePassword? (
+        {formik.errors.rePassword && formik.touched.rePassword ? (
           <div className="alert alert-danger">{formik.errors.rePassword}</div>
         ) : (
           ""

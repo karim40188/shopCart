@@ -2,6 +2,7 @@
 // add cart context
 import axios from "axios";
 import { createContext } from "react";
+import toast from "react-hot-toast";
 // import { UrlContext } from "./Context";
 
 export let CartContext = createContext();
@@ -22,7 +23,11 @@ export function CartContextProvider({ children }) {
       );
       return response;
     } catch (err) {
-      console.log(err);
+      if (localStorage.getItem("user") == null) {
+        toast.error(
+          "Please sign in to add items to your cart, as the API requires a token for this action"
+        );
+      }
     }
   }
 
